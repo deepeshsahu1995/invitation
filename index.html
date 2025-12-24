@@ -3964,19 +3964,51 @@
 
 <div id="svg-templates" style="position: absolute; overflow: hidden; bottom: 0; left: 0; width: 0; height: 0; z-index: 0; contain: strict" aria-hidden="true">
 
-    <script>
+  <script>
   let currentScroll = window.pageYOffset;
   let targetScroll = currentScroll;
-  const ease = 0.08;   // smaller = slower scroll (try 0.05)
+  const ease = 0.08;
 
-  window.addEventListener("wheel", function (e) {
-    e.preventDefault();
-    targetScroll += e.deltaY;
-    targetScroll = Math.max(
-      0,
-      Math.min(targetScroll, document.body.scrollHeight - window.innerHeight)
-    );
-  }, { passive: false });
+  let touchStartY = 0;
+
+  const maxScroll = () =>
+    document.body.scrollHeight - window.innerHeight;
+
+  // DESKTOP – Mouse Wheel
+  window.addEventListener(
+    "wheel",
+    function (e) {
+      e.preventDefault();
+      targetScroll += e.deltaY;
+      targetScroll = Math.max(0, Math.min(targetScroll, maxScroll()));
+    },
+    { passive: false }
+  );
+
+  // MOBILE – Touch Start
+  window.addEventListener(
+    "touchstart",
+    function (e) {
+      touchStartY = e.touches[0].clientY;
+    },
+    { passive: false }
+  );
+
+  // MOBILE – Touch Move
+  window.addEventListener(
+    "touchmove",
+    function (e) {
+      const touchY = e.touches[0].clientY;
+      const delta = touchStartY - touchY;
+
+      targetScroll += delta * 1.2; // control scroll speed
+      targetScroll = Math.max(0, Math.min(targetScroll, maxScroll()));
+
+      touchStartY = touchY;
+      e.preventDefault();
+    },
+    { passive: false }
+  );
 
   function smoothScroll() {
     currentScroll += (targetScroll - currentScroll) * ease;
@@ -3986,6 +4018,7 @@
 
   smoothScroll();
 </script>
+
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   const text = "Mayank Weds Deepali";
