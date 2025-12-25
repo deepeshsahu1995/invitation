@@ -4001,7 +4001,7 @@
       const touchY = e.touches[0].clientY;
       const delta = touchStartY - touchY;
 
-      targetScroll += delta * 1.9; // control scroll speed
+      targetScroll += delta * 8; // control scroll speed
       targetScroll = Math.max(0, Math.min(targetScroll, maxScroll()));
 
       touchStartY = touchY;
