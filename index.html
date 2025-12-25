@@ -3884,6 +3884,9 @@
 <!--/$-->
 </div>
 </div>
+
+
+
 </div>
 </div>
 </div>
@@ -3892,6 +3895,30 @@
 </div>
 </div>
 <!--/$-->
+
+
+<div class="wedding-countdown">
+  <h2>The countdown begins</h2>
+  <div id="countdown">
+    <div class="time-box">
+      <span id="days">00</span>
+      <small>Days</small>
+    </div>
+    <div class="time-box">
+      <span id="hours">00</span>
+      <small>Hours</small>
+    </div>
+    <div class="time-box">
+      <span id="minutes">00</span>
+      <small>Minutes</small>
+    </div>
+    <div class="time-box">
+      <span id="seconds">00</span>
+      <small>Seconds</small>
+    </div>
+  </div>
+  <p class="subtitle">Sahu family is excited that you are able to join us in celebrating what we hope will be one of the happiest days of our lives. </p>
+</div>
 
 <div id="overlay">
 </div>
@@ -4053,6 +4080,34 @@ window.addEventListener('scroll', () => {
 
   lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
 });
+</script>
+<script>
+  // Set wedding date (YYYY-MM-DDTHH:MM:SS)
+  const weddingDate = new Date("2026-02-04T00:00:00").getTime();
+
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const diff = weddingDate - now;
+
+    if (diff <= 0) {
+      document.getElementById("countdown").innerHTML =
+        "<h3>💖 Today is the Big Day! 💖</h3>";
+      return;
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    document.getElementById("days").innerText = days;
+    document.getElementById("hours").innerText = hours;
+    document.getElementById("minutes").innerText = minutes;
+    document.getElementById("seconds").innerText = seconds;
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
 </script>
 
 

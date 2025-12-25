@@ -5124,6 +5124,61 @@
     
     
 
+    .wedding-countdown {
+      text-align: center;
+      padding: 150px 20px;
+      margin: auto;
+      background: url("https://framerusercontent.com/images/uHJCRyTJO5bFnINnfmo5GFo0sQ.png?width=1349&height=1808") no-repeat center center;
+      background-size: cover;
+    }
+    
+    .wedding-countdown h2 {
+      font-size: 70px;
+      color: #44139b;
+      font-weight: normal;
+      font-family: "Cormorant Upright", "Cormorant Upright Placeholder", serif;
+      margin-bottom: 20px;
+    }
+    
+    .wedding-countdown .subtitle {
+      color: #44139b;
+      font-size: 14px;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+      font-family: "Cormorant Upright", "Cormorant Upright Placeholder", serif;
+      margin-bottom: 25px;
+    }
+    
+    #countdown {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+      font-family: "Cormorant Upright", "Cormorant Upright Placeholder", serif;
+    }
+    
+    .time-box {
+      border-radius: 12px;
+      min-width: 60px;
+    }
+    
+    .time-box span {
+      display: block;
+      font-size: 50px;
+      font-weight: normal;
+      color: #44139b;
+    }
+    
+    .time-box small {
+      font-size: 13px;
+      color: #44139b;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+    
+
 
 
     @media screen and (max-width: 767px) {
@@ -5137,4 +5192,23 @@
       .centerContent{
         top:34%;
       }
+      .framer-BFDoz .framer-9hg1xy{
+        right: -240px;
+      }
+      .framer-BFDoz .framer-1637jij, .framer-BFDoz .framer-hhczno{
+        top:407px;
+      }
+      .framer-BFDoz .framer-1f80wvp{
+        top:325px;
+      }
+      .framer-BFDoz .framer-b2lg7r{
+        left: -333px !important;
+      }
+      .framer-BFDoz .framer-34w19m, .framer-BFDoz .framer-qv860g{
+        top:560px;
+      }
+      .wedding-countdown h2{
+        font-size: 60px;
+      }
+
     }
