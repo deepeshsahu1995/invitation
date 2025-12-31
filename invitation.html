@@ -3954,6 +3954,15 @@
   </div>
   <p class="subtitle">Jaiswal family is excited that you are able to join us in celebrating what we hope will be one of the happiest days of our lives. </p>
 </div>
+<div class="wedding-slider slider">
+  <div class="slider-track">
+    <div class="slide"><img src="img/slide1.jpeg"></div>
+    <div class="slide"><img src="img/slide2.jpeg"></div>
+    <div class="slide"><img src="img/slide3.jpeg"></div>
+    <div class="slide"><img src="img/slide3.jpeg"></div>
+    <div class="slide"><img src="img/slide3.jpeg"></div>
+  </div>
+</div>
 
 <div id="overlay">
 </div>
@@ -4146,96 +4155,85 @@ window.addEventListener('scroll', () => {
 </script>
 
 <script>
-  const slider = document.querySelector(".slider");
-  const track = slider.querySelector(".slider-track");
-  const slides = slider.querySelectorAll(".slide");
+  document.querySelectorAll(".slider").forEach(slider => {
+    const track = slider.querySelector(".slider-track");
+    const slides = slider.querySelectorAll(".slide");
 
-  let index = 0;
-  let startX = 0;
-  let currentX = 0;
-  let isDragging = false;
-  let sliderWidth = slider.offsetWidth;
+    let index = 0;
+    let startX = 0;
+    let currentX = 0;
+    let isDragging = false;
+    let sliderWidth = slider.offsetWidth;
 
-  // AUTOPLAY
-  let autoplayInterval;
-  const AUTOPLAY_DELAY = 4000;
+    let autoplayInterval;
+    const AUTOPLAY_DELAY = 4000;
 
-  function startAutoplay() {
-    autoplayInterval = setInterval(() => {
-      index = (index + 1) % slides.length;
+    function startAutoplay() {
+      autoplayInterval = setInterval(() => {
+        index = (index + 1) % slides.length;
+        updateSlide();
+      }, AUTOPLAY_DELAY);
+    }
+
+    function stopAutoplay() {
+      clearInterval(autoplayInterval);
+    }
+
+    function updateSlide() {
+      track.style.transition = "transform 0.4s ease";
+      track.style.transform = `translateX(-${index * sliderWidth}px)`;
+    }
+
+    function startDrag(x) {
+      stopAutoplay();
+      isDragging = true;
+      startX = x;
+      currentX = 0;
+      track.style.transition = "none";
+    }
+
+    function moveDrag(x) {
+      if (!isDragging) return;
+      currentX = x - startX;
+      track.style.transform = `translateX(${currentX - index * sliderWidth}px)`;
+    }
+
+    function endDrag() {
+      if (!isDragging) return;
+      isDragging = false;
+
+      if (currentX < -80 && index < slides.length - 1) index++;
+      else if (currentX > 80 && index > 0) index--;
+
       updateSlide();
-    }, AUTOPLAY_DELAY);
-  }
+      startAutoplay();
+    }
 
-  function stopAutoplay() {
-    clearInterval(autoplayInterval);
-  }
+    /* Mouse */
+    slider.addEventListener("mousedown", e => startDrag(e.clientX));
+    window.addEventListener("mousemove", e => moveDrag(e.clientX));
+    window.addEventListener("mouseup", endDrag);
 
-  function updateSlide() {
-    track.style.transition = "transform 0.4s ease";
-    track.style.transform = `translateX(-${index * sliderWidth}px)`;
-  }
+    /* Touch */
+    slider.addEventListener("touchstart", e => {
+      startDrag(e.touches[0].clientX);
+    }, { passive: true });
 
-  /* =====================
-     DRAG HANDLERS
-  ====================== */
+    slider.addEventListener("touchmove", e => {
+      moveDrag(e.touches[0].clientX);
+    }, { passive: true });
 
-  function startDrag(x) {
-    stopAutoplay();
-    isDragging = true;
-    startX = x;
-    currentX = 0;
-    track.style.transition = "none";
-  }
+    slider.addEventListener("touchend", endDrag);
 
-  function moveDrag(x) {
-    if (!isDragging) return;
-    currentX = x - startX;
-    track.style.transform = `translateX(${currentX - index * sliderWidth}px)`;
-  }
+    window.addEventListener("resize", () => {
+      sliderWidth = slider.offsetWidth;
+      updateSlide();
+    });
 
-  function endDrag() {
-    if (!isDragging) return;
-    isDragging = false;
-
-    if (currentX < -80 && index < slides.length - 1) index++;
-    else if (currentX > 80 && index > 0) index--;
-
-    updateSlide();
     startAutoplay();
-  }
-
-  /* =====================
-     MOUSE EVENTS
-  ====================== */
-  slider.addEventListener("mousedown", e => startDrag(e.clientX));
-  window.addEventListener("mousemove", e => moveDrag(e.clientX));
-  window.addEventListener("mouseup", endDrag);
-
-  /* =====================
-     TOUCH EVENTS (FIXED)
-  ====================== */
-  slider.addEventListener("touchstart", e => {
-    startDrag(e.touches[0].clientX);
-  }, { passive: true });
-
-  slider.addEventListener("touchmove", e => {
-    moveDrag(e.touches[0].clientX);
-  }, { passive: true });
-
-  slider.addEventListener("touchend", endDrag);
-
-  /* =====================
-     RESIZE
-  ====================== */
-  window.addEventListener("resize", () => {
-    sliderWidth = slider.offsetWidth;
-    updateSlide();
   });
-
-  // START
-  startAutoplay();
 </script>
+
 
 
 
