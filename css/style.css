@@ -2638,7 +2638,7 @@
       gap: 0;
       width: 100%;
       height: min-content;
-      padding: 0 0 363px;
+      padding: 0 0 150px;
       display: flex;
       position: relative;
       overflow: visible
@@ -2776,7 +2776,7 @@
       width: 614px;
       height: 614px;
       position: absolute;
-      top: calc(17.0704% - 307px);
+      top: calc(17.0704% - 147px);
       left: calc(50% - 307px)
     }
 
@@ -3283,7 +3283,6 @@
 
       .framer-BFDoz .framer-9412jb {
         z-index: -1;
-        height: 5299px
       }
 
       .framer-BFDoz .framer-1qycoz3 {
@@ -3312,7 +3311,7 @@
       }
 
       .framer-BFDoz .framer-1u5i8a9-container {
-        top: calc(17.6046% - 307px)
+        top: calc(17.6046% - 147px)
       }
 
       .framer-BFDoz .framer-ocgc8g {
@@ -3715,7 +3714,6 @@
       .framer-BFDoz .framer-msu6hn {
         pointer-events: none;
         order: 8;
-        height: 2542px
       }
 
       .framer-BFDoz .framer-1u5i8a9-container {
@@ -5148,6 +5146,36 @@
       margin-right: auto;
       font-family: "Cormorant Upright", "Cormorant Upright Placeholder", serif;
       margin-bottom: 25px;
+    }
+
+    .boxBarat{
+      position: relative;
+      z-index: 1;
+      padding: 30px;
+      border: dashed 1px #ac9545;
+      margin-top: 70px;
+      margin-left: 20px;
+      margin-right: 20px;
+      text-align: center;
+      border-radius:50px;
+      background-color: rgba(0, 0, 0, 0.2);
+    }
+    .boxBarat h5 {
+      font-size: 50px;
+      color: #ac9545;
+      font-weight: normal;
+      font-family: "Cormorant Upright", "Cormorant Upright Placeholder", serif;
+      margin-bottom: 10px;
+    }
+    
+    .boxBarat p {
+      color: #ac9545;
+      font-size: 18px;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+      font-family: "Cormorant Upright", "Cormorant Upright Placeholder", serif;
+      margin-bottom: 0px;
     }
     
     #countdown {
